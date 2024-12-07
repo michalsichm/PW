@@ -1,0 +1,44 @@
+@URI = http://localhost:5183/api
+
+
+POST {{URI}}/events
+Content-Type: application/json
+
+{
+    "eventName": "second even",
+    "eventStart": "2022-04-08T08:00:00",
+    "eventEnd": "2022-04-08T08:00:00",
+    "userId": "c7493f14-7fc3-4b0e-b47d-f50a777db0ab"
+}
+
+###
+# GET {{URI}}/events/e35dacba-5a9e-43a2-9305-3dead8296fe0
+
+
+###
+PUT {{URI}}/events
+Content-Type: application/json
+
+
+{
+    "eventName": "third name",
+    "eventId": "9d065323-3001-4585-be09-427ae8ca7a28",
+    "eventStart": "2022-04-08T08:00:00",
+    "eventEnd": "2024-04-08T08:00:00",
+    "userId": "f0024d38-7d87-4298-9093-d262318c4b46"
+}
+
+###
+DELETE {{URI}}/events/a7eeb782-dc03-4523-a15b-e3f30180892a
+
+
+###
+GET {{URI}}/events/9d065323-3001-4585-be09-427ae8ca7a28
+
+###
+GET {{URI}}/shareevents/8fb547de-b749-4246-a45f-82cc33031fa9
+
+
+
+###
+GET {{URI}}/shareevents?token=4wxEjMhR0Zn8MBO%2f5%2fB4RD063ELcifnkkL6aj5ViM6o%3d&user=8fb547de-b749-4246-a45f-82cc33031fa9&timestamp=1731263825&expirationtime=10

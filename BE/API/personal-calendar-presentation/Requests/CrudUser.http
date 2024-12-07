@@ -1,0 +1,54 @@
+@URI = http://localhost:5183/api
+
+
+POST {{URI}}/auth/register
+Content-Type: application/json
+
+
+{
+    "name": "asdfasdf",
+    "surname": "Bro",
+    "email": "Yoesadfioer@yasdfahoo.com",
+    "password": "brojoe"
+}
+
+###
+
+POST {{URI}}/auth/login
+Content-Type: application/json
+
+
+{
+    "email": "admin",
+    "password": "admin"
+}
+
+
+###
+GET {{URI}}/bf27bd7c-66cc-4f83-ba1f-0620412bf8fa
+
+###
+GET {{URI}}/e35daaba-5a9e-43a2-9305-3dead8296fe0/events
+
+
+###
+PUT {{URI}}
+Content-Type: application/json
+
+{
+    "userId": "f0024d38-7d87-4298-9093-d262318c4b46",
+    "name": "Josh",
+    "surname": "Bro",
+    "email": "joefish@yahoo.com"
+}
+
+
+###
+
+DELETE {{URI}}/users/8494c24c-b90b-4db4-85d6-27b793e3a592
+
+
+
+###
+GET {{URI}}/users
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImY3ZThkM2JhLTgyYTYtNDdkZi1hNTJlLTQ2MzlkNmI0OTI3NyIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzMyNzg4MzMxLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUxODMvIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MTgzLyJ9.RuRdWU17bo261C3x0nO152IyMHseQVOL52e3HcGzF2A

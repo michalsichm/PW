@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "personal-calendar-application", "personal-calendar-application\personal-calendar-application.csproj", "{6DE932C2-B527-4752-AEA3-DD2D31EF4A0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "personal-calendar-domain", "personal-calendar-domain\personal-calendar-domain.csproj", "{97404133-C7D6-4A16-9F0F-BCECDAF8EBA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "personal-calendar-infrastructure", "personal-calendar-infrastructure\personal-calendar-infrastructure.csproj", "{19E9CEA5-A975-4182-AEDD-D5A39E2E4759}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "personal-calendar-presentation", "personal-calendar-presentation\personal-calendar-presentation.csproj", "{692DAD06-F022-4BD0-90E1-17083FD238D6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6DE932C2-B527-4752-AEA3-DD2D31EF4A0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DE932C2-B527-4752-AEA3-DD2D31EF4A0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DE932C2-B527-4752-AEA3-DD2D31EF4A0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DE932C2-B527-4752-AEA3-DD2D31EF4A0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97404133-C7D6-4A16-9F0F-BCECDAF8EBA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97404133-C7D6-4A16-9F0F-BCECDAF8EBA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97404133-C7D6-4A16-9F0F-BCECDAF8EBA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97404133-C7D6-4A16-9F0F-BCECDAF8EBA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19E9CEA5-A975-4182-AEDD-D5A39E2E4759}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19E9CEA5-A975-4182-AEDD-D5A39E2E4759}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19E9CEA5-A975-4182-AEDD-D5A39E2E4759}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19E9CEA5-A975-4182-AEDD-D5A39E2E4759}.Release|Any CPU.Build.0 = Release|Any CPU
+		{692DAD06-F022-4BD0-90E1-17083FD238D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{692DAD06-F022-4BD0-90E1-17083FD238D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{692DAD06-F022-4BD0-90E1-17083FD238D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{692DAD06-F022-4BD0-90E1-17083FD238D6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

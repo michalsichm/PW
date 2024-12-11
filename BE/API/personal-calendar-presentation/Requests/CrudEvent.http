@@ -8,7 +8,7 @@ Content-Type: application/json
     "eventName": "second even",
     "eventStart": "2022-04-08T08:00:00",
     "eventEnd": "2022-04-08T08:00:00",
-    "userId": "c7493f14-7fc3-4b0e-b47d-f50a777db0ab"
+    "userId": "d5f8c553-43f9-4a1f-b179-52d695384dd4"
 }
 
 ###
@@ -25,7 +25,8 @@ Content-Type: application/json
     "eventId": "9d065323-3001-4585-be09-427ae8ca7a28",
     "eventStart": "2022-04-08T08:00:00",
     "eventEnd": "2024-04-08T08:00:00",
-    "userId": "f0024d38-7d87-4298-9093-d262318c4b46"
+    "userId": "d5f8c553-43f9-4a1f-b179-52d695384dd4"
+
 }
 
 ###
@@ -36,9 +37,9 @@ DELETE {{URI}}/events/a7eeb782-dc03-4523-a15b-e3f30180892a
 GET {{URI}}/events/9d065323-3001-4585-be09-427ae8ca7a28
 
 ###
-GET {{URI}}/shareevents/8fb547de-b749-4246-a45f-82cc33031fa9
-
+GET {{URI}}/shareevents/d5f8c553-43f9-4a1f-b179-52d695384dd4
 
 
 ###
-GET {{URI}}/shareevents?token=4wxEjMhR0Zn8MBO%2f5%2fB4RD063ELcifnkkL6aj5ViM6o%3d&user=8fb547de-b749-4246-a45f-82cc33031fa9&timestamp=1731263825&expirationtime=10
+GET {{URI}}/shareevents?token=1RqDDGNOTq1RfDylIAnSOD8B62Im4jUKhp%2fA65Dcj7k%3d&user=d5f8c553-43f9-4a1f-b179-52d695384dd4&timestamp=1733856029&expirationtime=3600
+

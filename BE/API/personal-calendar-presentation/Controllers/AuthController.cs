@@ -2,7 +2,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Net.Mail;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using personal_calendar_application.Abstractions;
@@ -36,7 +35,7 @@ public class AuthController : ControllerBase
 
         try
         {
-            var mail = new MailAddress(loginRequest.Email);
+            var mail = new MailAddress(loginRequest.Email.Trim());
         }
         catch
         {
@@ -44,9 +43,10 @@ public class AuthController : ControllerBase
         }
 
         var user = await _authService.Login(loginRequest);
-        if (user is null) return Unauthorized(new { message = "Invalid email or password." });
+        if (user is null) return Unauthorized(new { message = "Incorrect email or password." });
         var token = GenerateToken(user.UserId, user.Role!);
-        return Ok(token);
+        return Ok(new { token });
+        // return Ok(user);
     }
 
     [HttpPost("register")]

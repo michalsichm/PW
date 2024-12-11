@@ -1,8 +1,6 @@
-using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using personal_calendar_application.Abstractions;
-using personal_calendar_application.Users.Queries.Get;
 
 namespace personal_calendar_presentation.Controllers;
 
@@ -13,7 +11,7 @@ public class ShareEventsController(IEventSharingService sharingService) : Contro
 {
     private readonly IEventSharingService _sharingService = sharingService;
 
-    [Authorize]
+    // [Authorize]
     [HttpGet("{id:guid}")]
     public IActionResult ShareEvents(Guid id)
     {
@@ -21,7 +19,7 @@ public class ShareEventsController(IEventSharingService sharingService) : Contro
         return Ok(link);
     }
 
-    [AllowAnonymous]
+    // [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> ValidateURL(Guid user, string token, string timestamp, string expirationTime)
     {
@@ -38,8 +36,8 @@ public class ShareEventsController(IEventSharingService sharingService) : Contro
             return BadRequest(new { message = "Link has expired" });
         }
         var parameters = user + timestamp + expirationTime;
-        var foundUser = await _sharingService.ReturnUserIfValid(token, parameters, user);
-        if (foundUser is null) return NotFound(new { message = "This user doesn't exist" });
-        return Ok(foundUser.Events);
+        var events = await _sharingService.ReturnEventsIfValid(token, parameters, user);
+        if (events is null) return NotFound(new { message = "This user doesn't exist or token is invalid" });
+        return Ok(events);
     }
 }

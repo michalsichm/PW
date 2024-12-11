@@ -1,5 +1,4 @@
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using personal_calendar_application.Events.Commands.Create;
 using personal_calendar_application.Events.Commands.Delete;

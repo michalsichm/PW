@@ -2,6 +2,7 @@ using System.Net.Mail;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using personal_calendar_application.Events.Queries;
 using personal_calendar_application.Users.Commands.Create;
 using personal_calendar_application.Users.Commands.Delete;
 using personal_calendar_application.Users.Contracts;
@@ -42,12 +43,13 @@ public class UsersController : ControllerBase
         return user is not null ? Ok(user) : NotFound();
     }
 
-    // [HttpGet("{id:guid}/events")]
-    // public async Task<IActionResult> GetUserEvents(Guid id)
-    // {
-    //     var events = await _userService.GetUserEventsByIdAsync(id);
-    //     return Ok(events);
-    // }
+    [HttpGet("{id:guid}/events")]
+    public async Task<IActionResult> GetUserEvents(Guid id)
+    {
+        var events = await _sender.Send(new GetEventsQuery(id));
+        if (events is null) return NotFound(new { message = "User not found" });
+        return Ok(events);
+    }
 
     // [Authorize(Roles = "Admin")]
     [HttpPost]

@@ -3,8 +3,11 @@ using System.Text;
 using System.Web;
 using MediatR;
 using personal_calendar_application.Abstractions;
+using personal_calendar_application.Events.Contracts;
+using personal_calendar_application.Events.Queries;
 using personal_calendar_application.Users.Contracts;
 using personal_calendar_application.Users.Queries.Get;
+using personal_calendar_application.Users.Queries.List;
 
 namespace personal_calendar_application.Services;
 
@@ -25,12 +28,12 @@ public sealed class EventSharingService(ISender sender) : IEventSharingService
         return queryWithSignature;
     }
 
-    public async Task<UserResponse?> ReturnUserIfValid(string token, string parameters, Guid id)
+    public async Task<IEnumerable<EventResponse>?> ReturnEventsIfValid(string token, string parameters, Guid id)
     {
         var hash = CreateToken(parameters + secretCode);
         if (token != hash) return null;
-        var user = await _sender.Send(new GetUserQuery(id));
-        return user;
+        var events = await _sender.Send(new GetEventsQuery(id));
+        return events;
     }
 
 

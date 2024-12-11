@@ -21,10 +21,7 @@ public class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserResponse?>
         if (user is null) return null;
         // var events = await userRepository.GetUserByIdAsync(request.userId);
         // return event response
-        var eventsResponse = user.Role == "User"
-           ? EventResponse.CreateEventResponse(user.Events!)
-           : null;
-        return new UserResponse(user.UserId, user.Role, user.Name, user.Surname, eventsResponse);
+        return new UserResponse(user.UserId, user.Role, user.Name, user.Surname);
 
     }
 }

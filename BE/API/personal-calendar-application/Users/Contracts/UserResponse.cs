@@ -8,6 +8,5 @@ public record UserResponse
     Guid UserId,
     string? Role,
     string? Name,
-    string? Surname,
-    ICollection<EventResponse>? Events
+    string? Surname
 );

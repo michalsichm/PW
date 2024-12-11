@@ -7,23 +7,21 @@ public class User
     public string? Surname { get; private set; }
     public string? Email { get; private set; }
     public string? Password { get; private set; }
-    public string? Role {get; private set; }
+    public string? Role { get; private set; }
     public DateTime Created { get; private set; }
     public DateTime Updated { get; private set; }
+    // [JsonIgnore]
     public List<Event>? Events { get; private set; }
 
 
     private User() { }
 
     public User(
-        // Guid userId,
         string name,
         string surname,
         string email,
         string password,
         string role
-        // DateTime created,
-        // DateTime updated
         )
     {
         UserId = Guid.NewGuid();
@@ -32,9 +30,6 @@ public class User
         Email = email;
         Password = password;
         Role = role;
-        if (role == "User") {
-            Events = [];
-        }
         Created = DateTime.UtcNow;
         Updated = DateTime.UtcNow;
     }

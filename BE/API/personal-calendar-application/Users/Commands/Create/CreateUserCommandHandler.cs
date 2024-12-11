@@ -15,14 +15,11 @@ public class CreateUserCommandHandler(IUserRepository userRepository, IHashServi
 
     public async Task<UserResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
-        var hashedPassword = hashService.HashPassword(request.Password);
-        var email = request.Email.ToLower();
+        var hashedPassword = hashService.HashPassword(request.Password.Trim());
+        var email = request.Email.ToLower().Trim();
         var user = new User(request.Name, request.Surname, email, hashedPassword, request.Role);
         await userRepository.CreateUserAsync(user);
-        var eventsResponse = user.Role == "User"
-           ? EventResponse.CreateEventResponse(user.Events!)
-           : null;
-        return new UserResponse(user.UserId, user.Role, user.Name, user.Surname, eventsResponse);
+        return new UserResponse(user.UserId, user.Role, user.Name, user.Surname);
 
     }
 }

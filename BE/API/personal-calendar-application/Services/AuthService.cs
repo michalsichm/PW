@@ -1,6 +1,5 @@
 using MediatR;
 using personal_calendar_application.Abstractions;
-using personal_calendar_application.Events.Contracts;
 using personal_calendar_application.Users.Commands.Create;
 using personal_calendar_application.Users.Contracts;
 
@@ -23,18 +22,15 @@ public sealed class AuthService : IAuthService
 
     public async Task<UserResponse?> Login(LoginRequest request)
     {
-        var user = await userRepository.GetUserByEmail(request.Email.ToLower());
+        var user = await userRepository.GetUserByEmail(request.Email.ToLower().Trim());
         if (user is null) return null; // asdf
-        if (!hashService.Validate(request.Password, user.Password!)) return null; // asdf
-        var eventsResponse = user.Role == "User"
-           ? EventResponse.CreateEventResponse(user.Events!)
-           : null;
-        return new UserResponse(user.UserId, user.Role, user.Name, user.Surname, eventsResponse);
+        if (!hashService.Validate(request.Password.Trim(), user.Password!)) return null; // asdf
+        return new UserResponse(user.UserId, user.Role, user.Name, user.Surname);
     }
 
     public async Task<UserResponse?> Register(CreateUserOrAdminRequest request)
     {
-        bool emailPresent = await userRepository.IsEmailPresentInDb(request.Email.ToLower());
+        bool emailPresent = await userRepository.IsEmailPresentInDb(request.Email.ToLower().Trim());
         if (emailPresent) return null;
         var command = CreateUserCommand.CreateCommand(request);
         var user = await sender.Send(command);

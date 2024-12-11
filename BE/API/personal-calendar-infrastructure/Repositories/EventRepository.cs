@@ -18,7 +18,7 @@ public class EventRepository : IEventRepository
     public async Task<Event?> CreateEventAsync(Event create_event)
     {
         bool userExists = _dbContext.Users.Any(u => u.UserId == create_event.UserId);
-        if (userExists) return null;
+        if (!userExists) return null;
         _dbContext.Events.Add(create_event);
         await _dbContext.SaveChangesAsync();
         return create_event;

@@ -33,25 +33,24 @@ public class UserRepository : IUserRepository
 
     public async Task<IEnumerable<User>> GetAllUsersAsync()
     {
-        var users = await _dbContext.Users.Include(u => u.Events).Where(u => u.Role == "User").ToListAsync();
+        var users = await _dbContext.Users.Where(u => u.Role == "User").ToListAsync();
         return users;
     }
 
     public async Task<User?> GetUserByIdAsync(Guid id)
     {
 
-        var user = await _dbContext.Users.Include(u => u.Events)
-                .FirstOrDefaultAsync(u => u.UserId == id);
+        var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.UserId == id);
         if (user == null) return null; // handle null or exception
         return user;
     }
 
-    public async Task<IEnumerable<Event>> GetUserEventsByIdAsync(Guid id)
+    public async Task<IEnumerable<Event>?> GetUserEventsByIdAsync(Guid id)
     {
         var user = await _dbContext.Users.Include(u => u.Events)
                 .FirstOrDefaultAsync(u => u.UserId == id);
-        if (user == null) return [];
-        return user.Events!;
+        if (user is null || user.Events is null) return null;
+        return user.Events;
     }
 
     public async Task<User> UpdateUserAsync(User user)

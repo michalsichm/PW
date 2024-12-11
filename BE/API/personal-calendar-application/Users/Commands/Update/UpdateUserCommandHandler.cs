@@ -22,7 +22,7 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, UserR
         if (user is null) return null;
         user.UpdateUser(request.Name, request.Surname, request.Email);
         await userRepository.UpdateUserAsync(user);
-        return new UserResponse(user.UserId, user.Role, user.Name, user.Surname, EventResponse.CreateEventResponse(user.Events!));
+        return new UserResponse(user.UserId, user.Role, user.Name, user.Surname);
 
     }
 }

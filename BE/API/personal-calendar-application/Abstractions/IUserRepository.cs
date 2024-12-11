@@ -9,7 +9,7 @@ public interface IUserRepository
     Task<User> UpdateUserAsync(User user);
     Task<User?> DeleteUserByIdAsync(Guid id);
     Task<User> CreateUserAsync(User user);
-    Task<IEnumerable<Event>> GetUserEventsByIdAsync(Guid id);
+    Task<IEnumerable<Event>?> GetUserEventsByIdAsync(Guid id);
     Task<bool> IsEmailPresentInDb(string email);
     Task<User?> GetUserByEmail(string email);
 }

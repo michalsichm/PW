@@ -10,7 +10,6 @@ public class User
     public string? Role { get; private set; }
     public DateTime Created { get; private set; }
     public DateTime Updated { get; private set; }
-    // [JsonIgnore]
     public List<Event>? Events { get; private set; }
 
 

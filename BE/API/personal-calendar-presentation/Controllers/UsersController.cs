@@ -65,6 +65,7 @@ public class UsersController : ControllerBase
         }
         var command = CreateUserCommand.CreateCommand(request);
         var user = await _sender.Send(command);
+        if (user is null) return BadRequest(new { message = "This email is taken." });
         return CreatedAtAction(nameof(GetUser), new { id = user.UserId }, user);
     }
 

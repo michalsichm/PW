@@ -1,6 +1,5 @@
 using MediatR;
 using personal_calendar_application.Users.Contracts;
-using personal_calendar_presentation.Contracts;
 
 namespace personal_calendar_application.Users.Commands.Create;
 

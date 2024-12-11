@@ -9,7 +9,8 @@ const Users = () => {
 
     useEffect(() => {
         async function getSetData() {
-            const {data, error} = await useequest("GET", "http://localhost:5183/api/users");
+            const { data, error } = await request("GET", "http://localhost:5183/api/users");
+            // console.log(data);
             setUsers(data);
             setError(error);
         }
@@ -30,20 +31,14 @@ const Users = () => {
             {users && users.map((user) => (
                 <div key={user.userId}>
                     <h1>{user.name}</h1>
+                    <h1>{user.surname}</h1>
                     <p>Role: {user.role}</p>
-                    {/* <h1>{user.surname}</h1> */}
                     <button onClick={() => { handleDeleteUser(user.userId) }}>Delete</button>
-                    {user.events.map(event =>
-                        <div key={event.eventId}>
-                            <p>Event Id: {event.eventId}</p>
-                            <p>Event Name: {event.eventName}</p>
-                            <p>Location: {event.location}</p>
-                        </div>
-                    )}
                 </div>
             )
             )}
-            {error && <p>{error}</p>}
+            {error && <p>An error occurred</p>}
+            {/* {error && <p>{error}</p>} */}
         </div>);
 }
 

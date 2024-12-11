@@ -1,11 +1,13 @@
-import { useState } from "react";
+// import { useState } from "react";
 
 
 
 
-const useRequest = async (requestMethod, url, body = null, token = null) => {
-    const [data, setData] = useState(null);
-    const [error, setError] = useState(null);
+const request = async (requestMethod, url, body = null, token = null) => {
+    // const [data, setData] = useState(null);
+    // const [error, setError] = useState(null);
+    let data = null;
+    let error = false;
     try {
         const response = await fetch(url, {
             method: requestMethod,
@@ -15,16 +17,23 @@ const useRequest = async (requestMethod, url, body = null, token = null) => {
         if (!response.ok) {
             const error = await response.json();
             throw new Error(`Request error. Status: ${response.status}. Message: ${error.message}`);
+            // throw new Error(error.message);
         }
         // console.log(await response.json());
         if (response.status === 204) return;
-        setData(await response.json());
+        // setData(await response.json());
+        data = await response.json()
+        // return { data, error };
         // return await response.json();
     }
-    catch (error) {
-        console.error(error.message);
-        setError(error.message);
+    catch (e) {
+        // console.log(e);
+        console.error(e.message);
+        error = true;
         // return null;
+        // setError(error.message);
+        // error = true;
+        // return { data, error };
     }
 
     return {data, error};
@@ -32,4 +41,4 @@ const useRequest = async (requestMethod, url, body = null, token = null) => {
 
 
 
-export default useRequest;
+export default request;

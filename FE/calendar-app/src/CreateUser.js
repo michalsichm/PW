@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Navbar from "./Navbar";
 import request from "./request";
-
+import { useNavigate } from "react-router-dom";
 
 
 const CreateUser = () => {
@@ -11,13 +11,15 @@ const CreateUser = () => {
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('User')
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const newUserOrAdmin = { name, surname, email, password, role };
-        const {_, error} = await request("POST", "http://localhost:5183/api/users", newUserOrAdmin);
-        setError(error);
-        // console.log(data);
+        const response = await request("POST", "http://localhost:5183/api/users", newUserOrAdmin);
+        console.log(response.data);
+        setError(response.error);
+        if (!response.error) navigate("/");
     }
 
     return (
@@ -25,30 +27,30 @@ const CreateUser = () => {
             <Navbar />
             <h2>Add a New User</h2>
             <form onSubmit={handleSubmit}>
-                <label>Name: </label>
                 <input
                     type="text"
+                    placeholder="Name"
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 />
-                <label>Surname: </label>
                 <input
                     type="text"
+                    placeholder="Surname"
                     required
                     value={surname}
                     onChange={(e) => setSurname(e.target.value)}
                 />
-                <label>Email: </label>
                 <input
                     type="text"
+                    placeholder="Email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
-                <label>Password: </label>
                 <input
                     type="text"
+                    placeholder="Password"
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -61,9 +63,9 @@ const CreateUser = () => {
                     <option value="User">User</option>
                     <option value="Admin">Admin</option>
                 </select>
-                <button>Add User</button>
+                <button>Create</button>
             </form>
-            {error && {error}}
+            {error && <p>Create failed</p>}
         </div>
     );
 }

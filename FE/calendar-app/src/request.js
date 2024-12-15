@@ -3,18 +3,34 @@
 
 
 
-const request = async (requestMethod, url, body = null, token = null) => {
+const request = async (requestMethod, url, body = null, token = true) => {
     // const [data, setData] = useState(null);
     // const [error, setError] = useState(null);
+    let headers = {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+
+    }
+
+
+    if (token === false) {
+        headers = { "Content-Type": "application/json" }
+    }
     let data = null;
     let error = false;
     try {
         const response = await fetch(url, {
             method: requestMethod,
-            headers: { "Content-Type": "application/json" },
+            headers: headers,
             body: body ? JSON.stringify(body) : undefined
         })
         if (!response.ok) {
+            // let error;
+            if (response.status === 401) {
+                localStorage.removeItem("token");
+                // console.log("unauth");
+            }
+
             const error = await response.json();
             throw new Error(`Request error. Status: ${response.status}. Message: ${error.message}`);
             // throw new Error(error.message);
@@ -22,7 +38,8 @@ const request = async (requestMethod, url, body = null, token = null) => {
         // console.log(await response.json());
         if (response.status === 204) return;
         // setData(await response.json());
-        data = await response.json()
+        // console.log(response);
+        data = await response.json();
         // return { data, error };
         // return await response.json();
     }
@@ -36,7 +53,7 @@ const request = async (requestMethod, url, body = null, token = null) => {
         // return { data, error };
     }
 
-    return {data, error};
+    return { data, error };
 }
 
 

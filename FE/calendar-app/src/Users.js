@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import request from "./request";
 
@@ -9,7 +10,7 @@ const Users = () => {
 
     useEffect(() => {
         async function getSetData() {
-            const { data, error } = await request("GET", "http://localhost:5183/api/users");
+            const { data, error } = await request("GET", "http://localhost:5183/api/users", null);
             // console.log(data);
             setUsers(data);
             setError(error);
@@ -30,9 +31,10 @@ const Users = () => {
             <Navbar />
             {users && users.map((user) => (
                 <div key={user.userId}>
-                    <h1>{user.name}</h1>
-                    <h1>{user.surname}</h1>
-                    <p>Role: {user.role}</p>
+                    <Link to={`/user/${user.userId}`}>
+                        <h1>{user.name}</h1>
+                        <h1>{user.surname}</h1>
+                    </Link>
                     <button onClick={() => { handleDeleteUser(user.userId) }}>Delete</button>
                 </div>
             )

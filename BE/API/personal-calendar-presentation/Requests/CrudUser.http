@@ -6,10 +6,10 @@ Content-Type: application/json
 
 
 {
-    "name": "asdfasdf",
-    "surname": "Bro",
-    "email": "Yoesadfioer@yasdfahoo.com",
-    "password": "brojoe"
+    "name": "User1",
+    "surname": "User1",
+    "email": "user1@yahoo.com",
+    "password": "user1"
 }
 
 ###
@@ -37,9 +37,8 @@ Content-Type: application/json
 
 {
     "userId": "f0024d38-7d87-4298-9093-d262318c4b46",
-    "name": "Josh",
-    "surname": "Bro",
-    "email": "joefish@yahoo.com"
+    "name": "User2",
+    "surname": "User2",
 }
 
 

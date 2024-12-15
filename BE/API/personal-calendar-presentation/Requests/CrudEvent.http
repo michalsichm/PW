@@ -5,7 +5,7 @@ POST {{URI}}/events
 Content-Type: application/json
 
 {
-    "eventName": "second even",
+    "eventName": "Event1",
     "eventStart": "2022-04-08T08:00:00",
     "eventEnd": "2022-04-08T08:00:00",
     "userId": "d5f8c553-43f9-4a1f-b179-52d695384dd4"
@@ -21,7 +21,7 @@ Content-Type: application/json
 
 
 {
-    "eventName": "third name",
+    "eventName": "Event2",
     "eventId": "9d065323-3001-4585-be09-427ae8ca7a28",
     "eventStart": "2022-04-08T08:00:00",
     "eventEnd": "2024-04-08T08:00:00",

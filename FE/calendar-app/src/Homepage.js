@@ -1,4 +1,6 @@
 import { useAuth } from "./AuthContext";
+import Events from "./Events";
+import Navbar from "./Navbar";
 import Users from "./Users";
 
 
@@ -11,7 +13,12 @@ const Homepage = () => {
     if (currentUser.role === "Admin") {
         return (<Users />)
     }
-    return (<p>Hello User</p>);
+    return (
+        <div>
+            <Navbar />
+            <Events id={currentUser.id} />
+        </div>
+    );
 }
 
 export default Homepage;

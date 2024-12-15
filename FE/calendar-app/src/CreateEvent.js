@@ -2,6 +2,7 @@ import request from "./request";
 import { useState } from "react";
 import Navbar from "./Navbar";
 import { useAuth } from "./AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const CreateEvent = () => {
     const [eventName, setEventName] = useState('');
@@ -10,6 +11,7 @@ const CreateEvent = () => {
     const [eventStart, setEventStart] = useState('');
     const [eventEnd, setEventEnd] = useState('');
     const { currentUser } = useAuth();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,9 +24,7 @@ const CreateEvent = () => {
         };
         const response = await request("POST", "http://localhost:5183/api/events", newEvent);
         console.log(response);
-        // console.log(newEvent);
-
-
+        navigate('/');
     }
 
 

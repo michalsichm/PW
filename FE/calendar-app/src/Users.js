@@ -32,8 +32,7 @@ const Users = () => {
             {users && users.map((user) => (
                 <div key={user.userId}>
                     <Link to={`/user/${user.userId}`}>
-                        <h1>{user.name}</h1>
-                        <h1>{user.surname}</h1>
+                        <h1>{user.name} {user.surname}</h1>
                     </Link>
                     <button onClick={() => { handleDeleteUser(user.userId) }}>Delete</button>
                 </div>

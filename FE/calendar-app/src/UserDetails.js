@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import request from "./request";
 import Navbar from "./Navbar";
 import Events from "./Events";
@@ -19,29 +19,85 @@ const UserDetails = () => {
     const { id } = useParams();
     const [user, setUser] = useState(undefined);
     const [userEvents, setUserEvents] = useState(null);
+    const navigate = useNavigate();
 
 
     useEffect(() => {
         const loadData = async function () {
             const [userData, eventsData] = await Promise.all([getUser(id), getUserEvents(id)]);
-            // check for error
-            // console.log(eventsData.data);
             setUser(userData.data);
             setUserEvents(eventsData.data);
         }
         loadData();
     }, [id])
 
+
+    const handleDeleteUser = async (userId) => {
+        await request("DELETE", `http://localhost:5183/api/users/${id}`)
+        navigate('/');
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const updateUser = { userId: user.userId, name: user.name, surname: user.surname };
+        await request("PUT", `http://localhost:5183/api/users`, updateUser, true);
+        navigate('/');
+    }
+
+    const updateName = (value) => {
+        setUser(prevUser => ({ ...prevUser, name: value }));
+    };
+
+    const updateSurname = (value) => {
+        setUser(prevUser => ({ ...prevUser, surname: value }));
+    };
+
+    // const handleUpdate = (target) => {
+    //     console.log(target);
+    //     // console.log("Updated");
+    // }
+
     return (
         <div>
             <Navbar />
-            {user &&
+            {/* {user &&
                 <div key={user.userId}>
-                    <h1>{user.name}</h1>
-                    <h1>{user.surname}</h1>
+                <h1>{user.name} {user.surname}</h1>
                 </div>
-            }
-            <Events events={userEvents}/>
+                } */}
+            {user && <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Name"
+                    required
+                    value={user.name}
+                    onChange={(e) => updateName(e.target.value)}
+                />
+                <input
+                    type="text"
+                    placeholder="Surname"
+                    required
+                    value={user.surname}
+                    onChange={(e) => updateSurname(e.target.value)}
+                />
+                {/* <input
+                    type="text"
+                    placeholder="Email"
+                    required
+                    value={user.email}
+                    // onChange={(e) => setEmail(e.target.value)}
+                /> */}
+                {/* <label>Role: </label>
+                <select
+                    value={role}
+                    onChange={(e) => setRole(e.target.value)}>
+                    <option value="User">User</option>
+                    <option value="Admin">Admin</option>
+                </select> */}
+                <button>Update</button>
+            </form>}
+            <button onClick={() => { handleDeleteUser() }}>Delete</button>
+            {userEvents && <Events eventsList={userEvents} />}
             {user === null && <p>This user doesn't exist</p>}
         </div>
     );

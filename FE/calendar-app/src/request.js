@@ -1,8 +1,3 @@
-// import { useState } from "react";
-
-
-
-
 const request = async (requestMethod, url, body = null, token = true) => {
     // const [data, setData] = useState(null);
     // const [error, setError] = useState(null);
@@ -25,10 +20,9 @@ const request = async (requestMethod, url, body = null, token = true) => {
             body: body ? JSON.stringify(body) : undefined
         })
         if (!response.ok) {
-            // let error;
             if (response.status === 401) {
                 localStorage.removeItem("token");
-                // console.log("unauth");
+                // redirect to login
             }
 
             const error = await response.json();
@@ -55,7 +49,6 @@ const request = async (requestMethod, url, body = null, token = true) => {
 
     return { data, error };
 }
-
 
 
 export default request;

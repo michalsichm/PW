@@ -6,8 +6,7 @@ const RoleProtectedRoute = ({ children, roles }) => {
     const { currentUser } = useAuth();
 
 
-    if (!currentUser?.isAuthenticated || currentUser === null) {
-        console.log(currentUser);
+    if (!currentUser?.isAuthenticated || currentUser === null || !localStorage.getItem("token")) {
         return <Navigate to="/login" replace />
     }
 

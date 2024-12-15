@@ -21,18 +21,19 @@ var builder = WebApplication.CreateBuilder(args);
                               policy.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod();
                           });
     });
-    // builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
-    //     x => x.TokenValidationParameters = new TokenValidationParameters
-    //     {
-    //         ValidIssuer = config["JwtSettings:Issuer"],
-    //         ValidAudience = config["JwtSettings:Audience"],
-    //         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JwtSettings:Key"]!)),
-    //         ValidateIssuer = true,
-    //         ValidateAudience = true,
-    //         ValidateLifetime = true,
-    //         ValidateIssuerSigningKey = true
-    //     }
-    // );
+    builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
+        x => x.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidIssuer = config["JwtSettings:Issuer"],
+            ValidAudience = config["JwtSettings:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JwtSettings:Key"]!)),
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true
+        }
+    );
+    builder.Services.AddAuthentication();
     builder.Services.AddAuthorization();
     builder.Services.AddControllers();
     builder.Services.AddDbContext<CalendarDbContext>(options =>
@@ -51,14 +52,8 @@ var app = builder.Build();
     // app.UseRouting();
     app.UseHttpsRedirection();
     app.UseCors("React-app");
-    // app.UseAuthentication();
-    // app.UseAuthorization();
+    app.UseAuthentication();
+    app.UseAuthorization();
     app.MapControllers();
     app.Run();
 }
-
-
-
-
-
-

@@ -19,8 +19,8 @@ Content-Type: application/json
 
 
 {
-    "email": "a@a.com",
-    "password": "a"
+    "email": "admin",
+    "password": "admin"
 }
 
 
@@ -50,10 +50,8 @@ DELETE {{URI}}/users/8494c24c-b90b-4db4-85d6-27b793e3a592
 
 
 ###
-GET {{URI}}/users
-# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImY3ZThkM2JhLTgyYTYtNDdkZi1hNTJlLTQ2MzlkNmI0OTI3NyIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzMyNzg4MzMxLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUxODMvIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MTgzLyJ9.RuRdWU17bo261C3x0nO152IyMHseQVOL52e3HcGzF2A
-
-
+GET {{URI}}/users/9055c016-1660-454c-909f-d9284b593486/events
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwZjY4NzYwLWE4YmItNGE1Yy1hODc4LWI0Yjc2ZDMxYzJjNyIsInJvbGUiOiJBZG1pbiIsImV4cCI6MTczNDE4NjA1NCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MTgzLyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTE4My8ifQ.36f_gadxNbB-S43DL1HMCgd0tYhAHzSG8GqTxpOR1sk
 
 ###
 GET {{URI}}/users/d5f8c553-43f9-4a1f-b179-52d695384dd4/events

@@ -1,5 +1,3 @@
-using personal_calendar_application.Events.Contracts;
-
 namespace personal_calendar_application.Users.Contracts;
 
 

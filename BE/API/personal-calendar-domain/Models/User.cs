@@ -43,11 +43,10 @@ public class User
     //     }
     // }
 
-    public void UpdateUser(string name, string surname, string email)
+    public void UpdateUser(string name, string surname)
     {
         Name = name;
         Surname = surname;
-        Email = email;
         Updated = DateTime.UtcNow;
     }
 

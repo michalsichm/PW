@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using personal_calendar_application.Abstractions;
 using personal_calendar_application.Users.Contracts;
+using personal_calendar_domain.Models;
 namespace personal_calendar_presentation.Controllers;
 
 
@@ -30,7 +31,7 @@ public class AuthController : ControllerBase
         {
 
             var adminToken = GenerateToken(Guid.NewGuid(), "Admin");
-            return Ok(adminToken);
+            return Ok(new { user = new { role = "Admin" }, token = adminToken });
         }
 
         try
@@ -45,7 +46,9 @@ public class AuthController : ControllerBase
         var user = await _authService.Login(loginRequest);
         if (user is null) return Unauthorized(new { message = "Incorrect email or password." });
         var token = GenerateToken(user.UserId, user.Role!);
-        return Ok(new { token });
+        // user.Token = token;
+        return Ok(new { user, token });
+        // return Ok(new { user, token });
         // return Ok(user);
     }
 
@@ -61,7 +64,7 @@ public class AuthController : ControllerBase
             return BadRequest(new { message = "Invalid email address." });
         }
         var user = await _authService.Register(request);
-        if (user is null) return BadRequest(new { message = "This email is taken."});
+        if (user is null) return BadRequest(new { message = "This email is taken." });
         return StatusCode(201, user);
     }
 
@@ -74,7 +77,7 @@ public class AuthController : ControllerBase
         var claims = new[]
         {
             new Claim("id", id.ToString()),
-            new Claim(ClaimTypes.Role, role)
+            new Claim("role", role)
         };
 
         var token = new JwtSecurityToken(_configuration["JwtSettings:Issuer"],

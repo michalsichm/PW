@@ -8,12 +8,11 @@ public record UpdateUserCommand
 (
     Guid UserId,
     string Name,
-    string Surname,
-    string Email
+    string Surname
 ) : IRequest<UserResponse>
 {
     public static UpdateUserCommand CreateCommand(UpdateUserRequest request)
     {
-        return new UpdateUserCommand(request.UserId, request.Name, request.Surname, request.Email);
+        return new UpdateUserCommand(request.UserId, request.Name, request.Surname);
     }
 }

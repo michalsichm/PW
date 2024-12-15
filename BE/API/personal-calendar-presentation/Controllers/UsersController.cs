@@ -14,7 +14,7 @@ namespace personal_calendar_presentation.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-// [Authorize]
+[Authorize]
 public class UsersController : ControllerBase
 {
     // private readonly IUserService _userService;
@@ -51,7 +51,7 @@ public class UsersController : ControllerBase
         return Ok(events);
     }
 
-    // [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public async Task<IActionResult> CreateUser(CreateUserOrAdminRequest request)
     {

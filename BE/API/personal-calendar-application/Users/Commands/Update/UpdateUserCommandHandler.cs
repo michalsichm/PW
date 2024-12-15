@@ -20,7 +20,7 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, UserR
     {
         var user = await userRepository.GetUserByIdAsync(request.UserId);
         if (user is null) return null;
-        user.UpdateUser(request.Name, request.Surname, request.Email);
+        user.UpdateUser(request.Name, request.Surname);
         await userRepository.UpdateUserAsync(user);
         return new UserResponse(user.UserId, user.Role, user.Name, user.Surname);
 

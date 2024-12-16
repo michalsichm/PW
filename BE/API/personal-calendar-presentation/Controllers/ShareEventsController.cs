@@ -32,7 +32,6 @@ public class ShareEventsController(IEventSharingService sharingService, ISender 
     [HttpGet]
     public async Task<IActionResult> ValidateURL(Guid user, string token, string timestamp, string expirationTime)
     {
-        // return problem???
         if (!long.TryParse(timestamp, out var time) ||
             !long.TryParse(expirationTime, out var expiration))
         {

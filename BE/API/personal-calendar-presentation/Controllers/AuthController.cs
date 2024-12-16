@@ -45,10 +45,7 @@ public class AuthController : ControllerBase
         var user = await _authService.Login(loginRequest);
         if (user is null) return Unauthorized(new { message = "Incorrect email or password." });
         var token = GenerateToken(user.UserId, user.Role!);
-        // user.Token = token;
         return Ok(new { user, token });
-        // return Ok(new { user, token });
-        // return Ok(user);
     }
 
     [HttpPost("register")]

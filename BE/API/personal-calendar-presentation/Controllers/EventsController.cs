@@ -22,13 +22,6 @@ public class EventsController : ControllerBase
     }
 
 
-    // [HttpGet]
-    // public async Task<IActionResult> GetAllEvents()
-    // {
-    //     var ev = await _eventService.GetAllEventsAsync();
-    //     return Ok(ev);
-    // }
-
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetEvent(Guid id)
     {

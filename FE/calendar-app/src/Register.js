@@ -20,7 +20,7 @@ const Register = () => {
         const response = await request("POST", "http://localhost:5183/api/auth/register", registerRequest);
         console.log(response.data);
         setError(error);
-        if (!response.error) navigate("/");
+        if (!response.error) navigate("/", { replace: true });
     };
     useEffect(() => {
         setPasswordMatch(password === passwordAgain);

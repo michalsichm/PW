@@ -32,7 +32,7 @@ const UserDetails = () => {
     }, [id])
 
 
-    const handleDeleteUser = async (userId) => {
+    const handleDeleteUser = async () => {
         await request("DELETE", `http://localhost:5183/api/users/${id}`)
         navigate('/');
     }
@@ -60,11 +60,6 @@ const UserDetails = () => {
     return (
         <div>
             <Navbar />
-            {/* {user &&
-                <div key={user.userId}>
-                <h1>{user.name} {user.surname}</h1>
-                </div>
-                } */}
             {user && <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -80,23 +75,9 @@ const UserDetails = () => {
                     value={user.surname}
                     onChange={(e) => updateSurname(e.target.value)}
                 />
-                {/* <input
-                    type="text"
-                    placeholder="Email"
-                    required
-                    value={user.email}
-                    // onChange={(e) => setEmail(e.target.value)}
-                /> */}
-                {/* <label>Role: </label>
-                <select
-                    value={role}
-                    onChange={(e) => setRole(e.target.value)}>
-                    <option value="User">User</option>
-                    <option value="Admin">Admin</option>
-                </select> */}
-                <button>Update</button>
+                <button>Update User</button>
             </form>}
-            <button onClick={() => { handleDeleteUser() }}>Delete</button>
+            <button onClick={() => { handleDeleteUser() }}>Delete User</button>
             {userEvents && <Events eventsList={userEvents} />}
             {user === null && <p>This user doesn't exist</p>}
         </div>

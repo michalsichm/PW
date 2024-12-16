@@ -20,10 +20,10 @@ const Users = () => {
 
 
 
-    const handleDeleteUser = async (userId) => {
-        await request("DELETE", `http://localhost:5183/api/users/${userId}`)
-        setUsers(users.filter((user) => user.userId !== userId));
-    }
+    // const handleDeleteUser = async (userId) => {
+    //     await request("DELETE", `http://localhost:5183/api/users/${userId}`)
+    //     setUsers(users.filter((user) => user.userId !== userId));
+    // }
 
 
     return (
@@ -34,29 +34,15 @@ const Users = () => {
                     <Link to={`/user/${user.userId}`}>
                         <h1>{user.name} {user.surname}</h1>
                     </Link>
-                    <button onClick={() => { handleDeleteUser(user.userId) }}>Delete</button>
+                    {/* <button onClick={() => { handleDeleteUser(user.userId) }}>Delete</button> */}
                 </div>
             )
             )}
             {error && <p>An error occurred</p>}
-            {/* {error && <p>{error}</p>} */}
+            {error && <p>{error}</p>}
         </div>);
 }
 
-
-// const UsersList = ({ usersList }) => {
-//     return (<div>
-//         {usersList && usersList.map((user) => (
-//             <div key={user.userId}>
-//                 <h1>{user.name}</h1>
-//                 {/* <h1>{user.surname}</h1> */}
-//                 <button onClick={() => { handleDeleteUser(user.userId) }}>Delete</button>
-//             </div>
-//         )
-//         )}
-//     </div>);
-
-// }
 
 
 export default Users;

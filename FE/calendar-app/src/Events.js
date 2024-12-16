@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import request from "./request";
+import { Link } from "react-router-dom";
 
 
 
@@ -24,15 +25,14 @@ const Events = ({ eventsList = null, id = null }) => {
 
 
 
+
     return (
         <div>
             {events !== null && events && events.map(event => (
                 <div key={event.eventId}>
-                    <p>Event Name: {event.eventName}</p>
-                    {event.description && <p>Description: {event.description}</p>}
-                    {event.location && <p>Location: {event.location}</p>}
-                    <p>Event Start: {event.eventStart}</p>
-                    <p>Event End: {event.eventEnd}</p>
+                    <Link to={`/event/${event.eventId}`}>
+                        <p>Event Name: {event.eventName}</p>
+                    </Link>
                 </div>
             ))}
             {events !== null && events.length === 0 && <p>No Events</p>}

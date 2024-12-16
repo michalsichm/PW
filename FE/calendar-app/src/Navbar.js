@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "./AuthContext";
+import CreateLink from "./CreateLink";
 
 
 
@@ -12,6 +13,7 @@ const Navbar = () => {
             <div>
                 <Link to="/">Home</Link>
                 <Link to="/create-event">Create Event</Link>
+                <CreateLink />
             </div>
         );
     }

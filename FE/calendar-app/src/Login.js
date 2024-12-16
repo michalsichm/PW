@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
+import { Link } from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -18,10 +19,6 @@ const Login = () => {
         }
 
     };
-
-    function parseJwt(token) {
-        return JSON.parse(atob(token.split('.')[1]));
-    }
 
 
     return (
@@ -43,6 +40,8 @@ const Login = () => {
                 <button type="submit">Login</button>
             </form>
             {error && <p>Error</p>}
+            <Link to={"/register"}>Register Here</Link>
+            
         </div>
     );
 };

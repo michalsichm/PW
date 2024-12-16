@@ -10,6 +10,8 @@ import RoleProtectedRoute from './RoleProtectedRoute';
 import Homepage from './Homepage';
 import UserDetails from './UserDetails';
 import CreateEvent from './CreateEvent';
+import EventDetails from './EventDetails';
+import ShareEvents from './ShareEvents';
 
 
 const router = createBrowserRouter(
@@ -28,13 +30,25 @@ const router = createBrowserRouter(
     },
     { path: "/login", element: <Login /> },
     { path: "/register", element: <Register /> },
-    { path: "/user/:id", element: <UserDetails /> },
+    {
+      path: "/user/:id", element:
+        <RoleProtectedRoute roles={['Admin']}>
+          <UserDetails />
+        </RoleProtectedRoute>
+    },
     {
       path: "/create-event", element:
         <RoleProtectedRoute roles={['User']}>
           <CreateEvent />
         </RoleProtectedRoute>
     },
+    {
+      path: "/event/:id", element:
+        <RoleProtectedRoute roles={['Admin', 'User']}>
+          <EventDetails />
+        </RoleProtectedRoute>
+    },
+    { path: "/share", element: <ShareEvents /> },
   ]
 )
 

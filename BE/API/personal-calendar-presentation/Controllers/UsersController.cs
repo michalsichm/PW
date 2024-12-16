@@ -25,6 +25,7 @@ public class UsersController : ControllerBase
         _sender = sender;
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpGet]
     public async Task<IActionResult> GetUsers()
     {

@@ -1,25 +1,34 @@
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using personal_calendar_application.Abstractions;
+using personal_calendar_application.Users.Queries.Get;
 
 namespace personal_calendar_presentation.Controllers;
 
 
 [ApiController]
 [Route("/api/[controller]")]
-public class ShareEventsController(IEventSharingService sharingService) : ControllerBase
+public class ShareEventsController(IEventSharingService sharingService, ISender sender) : ControllerBase
 {
     private readonly IEventSharingService _sharingService = sharingService;
+    private readonly ISender _sender = sender;
 
-    // [Authorize]
+
+    [Authorize(Roles = "User")]
     [HttpGet("{id:guid}")]
-    public IActionResult ShareEvents(Guid id)
+    public IActionResult ShareEventsAsync(Guid id)
     {
         var link = _sharingService.CreateLink(id);
-        return Ok(link);
+        if (string.IsNullOrEmpty(link))
+        {
+            return BadRequest(new { Error = "Unable to generate link." });
+        }
+        return Ok(new { link });
+
     }
 
-    // [AllowAnonymous]
+    [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> ValidateURL(Guid user, string token, string timestamp, string expirationTime)
     {
@@ -38,6 +47,9 @@ public class ShareEventsController(IEventSharingService sharingService) : Contro
         var parameters = user + timestamp + expirationTime;
         var events = await _sharingService.ReturnEventsIfValid(token, parameters, user);
         if (events is null) return NotFound(new { message = "This user doesn't exist or token is invalid" });
-        return Ok(events);
+        var foundUser = await _sender.Send(new GetUserQuery(user));
+
+        return foundUser is not null ? Ok(new { name = foundUser.Name, events }) : NotFound();
+
     }
 }

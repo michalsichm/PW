@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using personal_calendar_application.Abstractions;
 using personal_calendar_application.Users.Contracts;
-using personal_calendar_domain.Models;
 namespace personal_calendar_presentation.Controllers;
 
 

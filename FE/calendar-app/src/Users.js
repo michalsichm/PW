@@ -20,11 +20,6 @@ const Users = () => {
 
 
 
-    // const handleDeleteUser = async (userId) => {
-    //     await request("DELETE", `http://localhost:5183/api/users/${userId}`)
-    //     setUsers(users.filter((user) => user.userId !== userId));
-    // }
-
 
     return (
         <div>
@@ -34,7 +29,6 @@ const Users = () => {
                     <Link to={`/user/${user.userId}`}>
                         <h1>{user.name} {user.surname}</h1>
                     </Link>
-                    {/* <button onClick={() => { handleDeleteUser(user.userId) }}>Delete</button> */}
                 </div>
             )
             )}

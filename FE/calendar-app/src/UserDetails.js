@@ -52,10 +52,7 @@ const UserDetails = () => {
         setUser(prevUser => ({ ...prevUser, surname: value }));
     };
 
-    // const handleUpdate = (target) => {
-    //     console.log(target);
-    //     // console.log("Updated");
-    // }
+
 
     return (
         <div>

@@ -12,7 +12,6 @@ const ShareEvents = () => {
     useEffect(() => {
         const getEvents = async function () {
             const response = await request("GET", `http://localhost:5183/api/shareevents/${params.search}`);
-            // console.log(response);
             setEvents(response.data.events);
             setName(response.data.name);
             setError(response.error);

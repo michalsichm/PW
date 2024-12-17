@@ -48,7 +48,7 @@ public class ShareEventsController(IEventSharingService sharingService, ISender 
         if (events is null) return NotFound(new { message = "This user doesn't exist or token is invalid" });
         var foundUser = await _sender.Send(new GetUserQuery(user));
 
-        return foundUser is not null ? Ok(new { name = foundUser.Name, events }) : NotFound();
+        return Ok(new { name = foundUser.Name, events });
 
     }
 }

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 import CreateLink from "./CreateLink";
+import Logout from "./Logout";
 
 
 
@@ -14,6 +15,7 @@ const Navbar = () => {
                 <Link to="/">Home</Link>
                 <Link to="/create-event">Create Event</Link>
                 <CreateLink />
+                <Logout />
             </div>
         );
     }
@@ -22,6 +24,7 @@ const Navbar = () => {
         <div>
             <Link to="/">Home</Link>
             <Link to="/create">Create</Link>
+            <Logout />
         </div>
     );
 }

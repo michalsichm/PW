@@ -6,10 +6,10 @@ Content-Type: application/json
 
 
 {
-    "name": "User1",
-    "surname": "User1",
-    "email": "user1@yahoo.com",
-    "password": "user1"
+    "name": "User3",
+    "surname": "User3",
+    "email": "user4@yahoo.com",
+    "password": "user3"
 }
 
 ###

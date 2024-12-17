@@ -35,6 +35,7 @@ const ShareEvents = () => {
                 </div>
             )
             )}
+            {events.length === 0 && <p>No Events</p>}
             {error && <p>An error occurred</p>}
             {error && <p>{error}</p>}
         </div>

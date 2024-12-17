@@ -41,7 +41,7 @@ const Login = () => {
             </form>
             {error && <p>Error</p>}
             <Link to={"/register"}>Register Here</Link>
-            
+
         </div>
     );
 };

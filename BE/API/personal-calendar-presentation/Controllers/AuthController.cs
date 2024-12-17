@@ -61,7 +61,8 @@ public class AuthController : ControllerBase
         }
         var user = await _authService.Register(request);
         if (user is null) return BadRequest(new { message = "This email is taken." });
-        return StatusCode(201, user);
+        var token = GenerateToken(user.UserId, user.Role!);
+        return CreatedAtAction("GetUser", "Users", new { id = user.UserId }, new { user, token });
     }
 
 

@@ -1,6 +1,6 @@
-import request from "./request";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "./AuthContext";
 
 
 const Register = () => {
@@ -12,16 +12,20 @@ const Register = () => {
     const [passwordMatch, setPasswordMatch] = useState();
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+    const { register } = useAuth();
 
     const handleRegister = async (e) => {
         e.preventDefault();
         if (!passwordMatch) return;
         const registerRequest = { name, surname, email, password };
-        const response = await request("POST", "http://localhost:5183/api/auth/register", registerRequest);
-        console.log(response.data);
-        setError(error);
-        if (!response.error) navigate("/", { replace: true });
+        const response = await register(registerRequest);
+        setError(response.error);
+        if (!response.error) {
+            navigate("/", { replace: true });
+        }
     };
+
+
     useEffect(() => {
         setPasswordMatch(password === passwordAgain);
     }, [password, passwordAgain]);

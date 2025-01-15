@@ -57,24 +57,28 @@ const UserDetails = () => {
     return (
         <div>
             <Navbar />
-            {user && <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="Name"
-                    required
-                    value={user.name}
-                    onChange={(e) => updateName(e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Surname"
-                    required
-                    value={user.surname}
-                    onChange={(e) => updateSurname(e.target.value)}
-                />
-                <button>Update User</button>
-            </form>}
-            <button onClick={() => { handleDeleteUser() }}>Delete User</button>
+            {user && <div>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        placeholder="Name"
+                        required
+                        value={user.name}
+                        onChange={(e) => updateName(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Surname"
+                        required
+                        value={user.surname}
+                        onChange={(e) => updateSurname(e.target.value)}
+                    />
+                    <button>Update User</button>
+                </form>
+                <button onClick={() => { handleDeleteUser() }}>Delete User</button>
+                <p>Created: {user.created}</p>
+                <p>Updated: {user.updated}</p>
+            </div>}
             {userEvents && <Events eventsList={userEvents} />}
             {user === null && <p>This user doesn't exist</p>}
         </div>

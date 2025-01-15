@@ -1,10 +1,12 @@
 namespace personal_calendar_application.Users.Contracts;
 
 
-public record AdminResponse
+public record UserAdminResponse
 (
     Guid UserId,
     string? Role,
     string? Name,
-    string? Surname
+    string? Surname,
+    DateTime Created,
+    DateTime Updated
 );

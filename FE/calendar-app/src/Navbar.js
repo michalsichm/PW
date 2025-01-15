@@ -12,6 +12,7 @@ const Navbar = () => {
     if (currentUser.role === "User") {
         return (
             <div>
+                <Link to="/profile">Profile</Link>
                 <Link to="/">Home</Link>
                 <Link to="/create-event">Create Event</Link>
                 <CreateLink />

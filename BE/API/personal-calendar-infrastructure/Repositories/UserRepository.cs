@@ -33,7 +33,7 @@ public class UserRepository : IUserRepository
 
     public async Task<IEnumerable<User>> GetAllUsersAsync()
     {
-        var users = await _dbContext.Users.Where(u => u.Role == "User").ToListAsync();
+        var users = await _dbContext.Users.AsNoTracking().Where(u => u.Role == "User").ToListAsync();
         return users;
     }
 

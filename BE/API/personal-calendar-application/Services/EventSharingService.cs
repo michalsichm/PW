@@ -5,9 +5,6 @@ using MediatR;
 using personal_calendar_application.Abstractions;
 using personal_calendar_application.Events.Contracts;
 using personal_calendar_application.Events.Queries;
-using personal_calendar_application.Users.Contracts;
-using personal_calendar_application.Users.Queries.Get;
-using personal_calendar_application.Users.Queries.List;
 
 namespace personal_calendar_application.Services;
 

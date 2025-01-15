@@ -12,6 +12,7 @@ import UserDetails from './UserDetails';
 import CreateEvent from './CreateEvent';
 import EventDetails from './EventDetails';
 import ShareEvents from './ShareEvents';
+import UserProfile from './UserProfile';
 
 
 const router = createBrowserRouter(
@@ -40,6 +41,12 @@ const router = createBrowserRouter(
       path: "/create-event", element:
         <RoleProtectedRoute roles={['User']}>
           <CreateEvent />
+        </RoleProtectedRoute>
+    },
+    {
+      path: "/profile", element:
+        <RoleProtectedRoute roles={['User']}>
+          <UserProfile />
         </RoleProtectedRoute>
     },
     {

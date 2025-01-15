@@ -34,20 +34,24 @@ public class User
     }
 
 
-    // public void UpdateName(string? name)
+    // public void UpdatePassword(string password)
     // {
-    //     if (!string.IsNullOrEmpty(name))
+    //     if (!string.IsNullOrEmpty(password))
     //     {
-    //         Name = name;
+    //         Password = password;
     //         Updated = DateTime.UtcNow;
     //     }
     // }
 
-    public void UpdateUser(string name, string surname)
+    public void UpdateUser(string name, string surname, string? password = null)
     {
         Name = name;
         Surname = surname;
         Updated = DateTime.UtcNow;
+        if (!string.IsNullOrEmpty(password))
+        {
+            Password = password;
+        }
     }
 
     // public void UpdateSurname(string? surname)

@@ -19,6 +19,7 @@ public class UpdateEventCommandHandler : IRequestHandler<UpdateEventCommand, Eve
     public async Task<EventResponse?> Handle(UpdateEventCommand request, CancellationToken cancellationToken)
     {
 
+        if (string.IsNullOrWhiteSpace(request.EventName)) return null;
         var ev = await _eventRepository.GetEventByIdAsync(request.EventId);
         if (ev is null) return null;
         ev.UpdateEvent(request.EventName, request.Description, request.EventStart, request.EventEnd, request.Location);

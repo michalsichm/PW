@@ -18,11 +18,11 @@ public record UpdateEventCommand(
     {
         return new UpdateEventCommand(
             request.EventId,
-            request.EventName,
-            request.Description,
+            request.EventName.Trim(),
+            request.Description?.Trim(),
             request.EventStart,
             request.EventEnd,
-            request.Location,
+            request.Location?.Trim(),
             request.UserId);
     }
 

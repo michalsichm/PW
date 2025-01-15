@@ -16,11 +16,11 @@ public record CreateEventCommand(
     public static CreateEventCommand CreateCommand(CreateEventRequest request)
     {
         return new CreateEventCommand(
-            request.EventName,
-            request.Description,
+            request.EventName.Trim(),
+            request.Description?.Trim(),
             request.EventStart,
             request.EventEnd,
-            request.Location,
+            request.Location?.Trim(),
             request.UserId);
     }
 

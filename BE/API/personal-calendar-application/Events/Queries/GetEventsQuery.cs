@@ -5,4 +5,4 @@ namespace personal_calendar_application.Events.Queries;
 
 
 
-public record GetEventsQuery(Guid UserId) : IRequest<IEnumerable<EventResponse>>; 
+public record GetEventsQuery(Guid UserId) : IRequest<IEnumerable<EventResponse>>;

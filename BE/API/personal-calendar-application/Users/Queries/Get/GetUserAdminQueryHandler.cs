@@ -5,20 +5,20 @@ using personal_calendar_application.Users.Contracts;
 namespace personal_calendar_application.Users.Queries.Get;
 
 
-public class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserResponse?>
+public class GetUserQueryAdminHandler : IRequestHandler<GetUserAdminQuery, UserAdminResponse?>
 {
     private readonly IUserRepository userRepository;
 
-    public GetUserQueryHandler(IUserRepository userRepository)
+    public GetUserQueryAdminHandler(IUserRepository userRepository)
     {
         this.userRepository = userRepository;
     }
 
-    public async Task<UserResponse?> Handle(GetUserQuery request, CancellationToken cancellationToken)
+    public async Task<UserAdminResponse?> Handle(GetUserAdminQuery request, CancellationToken cancellationToken)
     {
         var user = await userRepository.GetUserByIdAsync(request.UserId);
         if (user is null) return null;
-        return new UserResponse(user.UserId, user.Role, user.Name, user.Surname);
+        return new UserAdminResponse(user.UserId, user.Role, user.Name, user.Surname, user.Created, user.Updated);
 
     }
 }

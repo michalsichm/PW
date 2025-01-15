@@ -12,6 +12,7 @@ public class CreateEventCommandHandler(IEventRepository eventRepository) : IRequ
 
     public async Task<EventResponse?> Handle(CreateEventCommand request, CancellationToken cancellationToken)
     {
+        if (string.IsNullOrWhiteSpace(request.EventName)) return null;
         var ev = Event.CreateEvent(
             request.EventName,
             request.Description,

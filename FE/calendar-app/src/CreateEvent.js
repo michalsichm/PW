@@ -55,7 +55,7 @@ const CreateEvent = () => {
                 />
 
                 <label htmlFor="event-start">Event Start: </label>
-                <input value={eventStart} onChange={(e) => setEventStart(e.target.value)}
+                <input required value={eventStart} onChange={(e) => setEventStart(e.target.value)}
                     type="datetime-local" id="event-start" name="event-start"></input>
                 <label htmlFor="event-end">Event End: </label>
                 <input required value={eventEnd} onChange={(e) => setEventEnd(e.target.value)}

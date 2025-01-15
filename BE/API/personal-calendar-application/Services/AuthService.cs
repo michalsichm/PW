@@ -33,9 +33,7 @@ public sealed class AuthService : IAuthService
         bool emailPresent = await userRepository.IsEmailPresentInDb(request.Email.ToLower().Trim());
         if (emailPresent) return null;
         var command = CreateUserCommand.CreateCommand(request);
-        var user = await sender.Send(command);
-        return user;
-
+        return await sender.Send(command);
     }
 
 }

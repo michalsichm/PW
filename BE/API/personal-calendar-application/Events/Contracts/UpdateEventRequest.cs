@@ -3,7 +3,7 @@ namespace personal_calendar_application.Events.Contracts;
 
 public record UpdateEventRequest(
     Guid EventId,
-    string? EventName,
+    string EventName,
     string? Description,
     DateTime EventStart,
     DateTime EventEnd,

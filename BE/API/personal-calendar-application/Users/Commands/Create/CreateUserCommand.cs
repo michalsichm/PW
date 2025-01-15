@@ -15,7 +15,9 @@ public record CreateUserCommand
 {
     public static CreateUserCommand CreateCommand(CreateUserOrAdminRequest request)
     {
-        return new CreateUserCommand(request.Name, request.Surname, request.Email, request.Password, request.Role);
+        return new CreateUserCommand(request.Name.Trim(), request.Surname.Trim(),
+            request.Email.ToLower().Trim(),
+            request.Password.Trim(), request.Role);
     }
 }
 

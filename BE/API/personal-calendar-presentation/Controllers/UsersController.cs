@@ -36,13 +36,21 @@ public class UsersController : ControllerBase
 
     // Cancellation Tokens??
 
-
+    [Authorize]
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetUser(Guid id)
     {
-        var user = await _sender.Send(new GetUserQuery(id));
-        return user is not null ? Ok(user) : NotFound();
+        if (User.IsInRole("User"))
+        {
+            var user = await _sender.Send(new GetUserQuery(id));
+            return user is not null ? Ok(user) : NotFound();
+        }
+        var userAdmin = await _sender.Send(new GetUserAdminQuery(id));
+        return userAdmin is not null ? Ok(userAdmin) : NotFound();
+
     }
+
+
 
     [HttpGet("{id:guid}/events")]
     public async Task<IActionResult> GetUserEvents(Guid id)
@@ -86,5 +94,12 @@ public class UsersController : ControllerBase
     }
 
 
+    // [HttpPut("/change-password")]
+    // public async Task<IActionResult> UpdateUserPassword(UpdateUserRequest request)
+    // {
+    //     var command = UpdateUserCommand.CreateCommand(request);
+    //     var updated_user = await _sender.Send(command);
+    //     return updated_user is null ? NotFound() : Ok(updated_user);
+    // }
 
 }
